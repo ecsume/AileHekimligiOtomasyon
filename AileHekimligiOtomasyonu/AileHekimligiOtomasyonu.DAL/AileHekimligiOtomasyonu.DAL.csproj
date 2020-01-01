@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F811CAF7-02C3-4E02-B8AA-A0030D1AE274}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AileHekimligiOtomasyonu.DAL</RootNamespace>
+    <AssemblyName>AileHekimligiOtomasyonu.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DoktorDAL.cs" />
+    <Compile Include="Entity\AileHekimligiModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AileHekimligiModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\AileHekimligiModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\AileHekimligiModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AileHekimligiModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Doktor.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Hasta.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Ilac.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Login.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Muayene.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Randevu.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\SaglikOcagi.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\sysdiagram.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Tani.cs">
+      <DependentUpon>AileHekimligiModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="HastaDAL.cs" />
+    <Compile Include="IlacDAL.cs" />
+    <Compile Include="Interface\IDoktor.cs" />
+    <Compile Include="Interface\IHasta.cs" />
+    <Compile Include="Interface\IIlac.cs" />
+    <Compile Include="Interface\ILogin.cs" />
+    <Compile Include="Interface\IMuayene.cs" />
+    <Compile Include="Interface\IRandevu.cs" />
+    <Compile Include="Interface\ISaglikOcagi.cs" />
+    <Compile Include="Interface\ITani.cs" />
+    <Compile Include="LoginDAL.cs" />
+    <Compile Include="MuayeneDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandevuDAL.cs" />
+    <Compile Include="SaglikOcagiDAL.cs" />
+    <Compile Include="TaniDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Entity\AileHekimligiModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AileHekimligiModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="Entity\AileHekimligiModel.edmx.diagram">
+      <DependentUpon>AileHekimligiModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entity\AileHekimligiModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AileHekimligiModel.Context.cs</LastGenOutput>
+      <DependentUpon>AileHekimligiModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Entity\AileHekimligiModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AileHekimligiModel.edmx</DependentUpon>
+      <LastGenOutput>AileHekimligiModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

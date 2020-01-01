@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AileHekimligidbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AileHekimligidbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Doktors" EntityType="AileHekimligidbModel.Doktor" />
+    <EntitySet Name="Ilacs" EntityType="AileHekimligidbModel.Ilac" />
+    <EntitySet Name="Muayenes" EntityType="AileHekimligidbModel.Muayene" />
+    <EntitySet Name="Randevus" EntityType="AileHekimligidbModel.Randevu" />
+    <EntitySet Name="SaglikOcagis" EntityType="AileHekimligidbModel.SaglikOcagi" />
+    <EntitySet Name="sysdiagrams" EntityType="AileHekimligidbModel.sysdiagram" />
+    <EntitySet Name="Tanis" EntityType="AileHekimligidbModel.Tani" />
+    <AssociationSet Name="FK_Doktor_SaglikOcagi" Association="AileHekimligidbModel.FK_Doktor_SaglikOcagi">
+      <End Role="SaglikOcagi" EntitySet="SaglikOcagis" />
+      <End Role="Doktor" EntitySet="Doktors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muayene_Doktor" Association="AileHekimligidbModel.FK_Muayene_Doktor">
+      <End Role="Doktor" EntitySet="Doktors" />
+      <End Role="Muayene" EntitySet="Muayenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Randevu_Doktor" Association="AileHekimligidbModel.FK_Randevu_Doktor">
+      <End Role="Doktor" EntitySet="Doktors" />
+      <End Role="Randevu" EntitySet="Randevus" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muayene_Ilac" Association="AileHekimligidbModel.FK_Muayene_Ilac">
+      <End Role="Ilac" EntitySet="Ilacs" />
+      <End Role="Muayene" EntitySet="Muayenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muayene_Tani" Association="AileHekimligidbModel.FK_Muayene_Tani">
+      <End Role="Tani" EntitySet="Tanis" />
+      <End Role="Muayene" EntitySet="Muayenes" />
+    </AssociationSet>
+    <EntitySet Name="Logins" EntityType="AileHekimligidbModel.Login" />
+    <EntitySet Name="Hastas" EntityType="AileHekimligidbModel.Hasta" />
+    <AssociationSet Name="FK_Muayene_Hasta" Association="AileHekimligidbModel.FK_Muayene_Hasta">
+      <End Role="Hasta" EntitySet="Hastas" />
+      <End Role="Muayene" EntitySet="Muayenes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Randevu_Hasta" Association="AileHekimligidbModel.FK_Randevu_Hasta">
+      <End Role="Hasta" EntitySet="Hastas" />
+      <End Role="Randevu" EntitySet="Randevus" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Doktor">
+    <Key>
+      <PropertyRef Name="DoktorId" />
+    </Key>
+    <Property Name="DoktorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SaglikOcagiId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="SaglikOcagi" Relationship="AileHekimligidbModel.FK_Doktor_SaglikOcagi" FromRole="Doktor" ToRole="SaglikOcagi" />
+    <NavigationProperty Name="Muayenes" Relationship="AileHekimligidbModel.FK_Muayene_Doktor" FromRole="Doktor" ToRole="Muayene" />
+    <NavigationProperty Name="Randevus" Relationship="AileHekimligidbModel.FK_Randevu_Doktor" FromRole="Doktor" ToRole="Randevu" />
+  </EntityType>
+  <EntityType Name="Ilac">
+    <Key>
+      <PropertyRef Name="IlacId" />
+    </Key>
+    <Property Name="IlacId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IlacAdi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dozaj" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KullanimSuresi" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Muayenes" Relationship="AileHekimligidbModel.FK_Muayene_Ilac" FromRole="Ilac" ToRole="Muayene" />
+  </EntityType>
+  <EntityType Name="Muayene">
+    <Key>
+      <PropertyRef Name="MuayeneId" />
+    </Key>
+    <Property Name="MuayeneId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoktorId" Type="Int32" Nullable="false" />
+    <Property Name="HastaId" Type="Int32" Nullable="false" />
+    <Property Name="TaniId" Type="Int32" Nullable="false" />
+    <Property Name="IlacId" Type="Int32" Nullable="false" />
+    <Property Name="Sikayet" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Doktor" Relationship="AileHekimligidbModel.FK_Muayene_Doktor" FromRole="Muayene" ToRole="Doktor" />
+    <NavigationProperty Name="Ilac" Relationship="AileHekimligidbModel.FK_Muayene_Ilac" FromRole="Muayene" ToRole="Ilac" />
+    <NavigationProperty Name="Tani" Relationship="AileHekimligidbModel.FK_Muayene_Tani" FromRole="Muayene" ToRole="Tani" />
+    <NavigationProperty Name="Hasta" Relationship="AileHekimligidbModel.FK_Muayene_Hasta" FromRole="Muayene" ToRole="Hasta" />
+  </EntityType>
+  <EntityType Name="Randevu">
+    <Key>
+      <PropertyRef Name="RandevuId" />
+    </Key>
+    <Property Name="RandevuId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HastaId" Type="Int32" Nullable="false" />
+    <Property Name="DoktorId" Type="Int32" Nullable="false" />
+    <Property Name="RandevuTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Doktor" Relationship="AileHekimligidbModel.FK_Randevu_Doktor" FromRole="Randevu" ToRole="Doktor" />
+    <NavigationProperty Name="Hasta" Relationship="AileHekimligidbModel.FK_Randevu_Hasta" FromRole="Randevu" ToRole="Hasta" />
+  </EntityType>
+  <EntityType Name="SaglikOcagi">
+    <Key>
+      <PropertyRef Name="SaglikOcagiId" />
+    </Key>
+    <Property Name="SaglikOcagiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SaglikOcagiAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SaglikOcagiAdres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Doktors" Relationship="AileHekimligidbModel.FK_Doktor_SaglikOcagi" FromRole="SaglikOcagi" ToRole="Doktor" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tani">
+    <Key>
+      <PropertyRef Name="TaniId" />
+    </Key>
+    <Property Name="TaniId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aciklama" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Muayenes" Relationship="AileHekimligidbModel.FK_Muayene_Tani" FromRole="Tani" ToRole="Muayene" />
+  </EntityType>
+  <Association Name="FK_Doktor_SaglikOcagi">
+    <End Type="AileHekimligidbModel.SaglikOcagi" Role="SaglikOcagi" Multiplicity="1" />
+    <End Type="AileHekimligidbModel.Doktor" Role="Doktor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaglikOcagi">
+        <PropertyRef Name="SaglikOcagiId" />
+      </Principal>
+      <Dependent Role="Doktor">
+        <PropertyRef Name="SaglikOcagiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muayene_Doktor">
+    <End Type="AileHekimligidbModel.Doktor" Role="Doktor" Multiplicity="1" />
+    <End Type="AileHekimligidbModel.Muayene" Role="Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doktor">
+        <PropertyRef Name="DoktorId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="DoktorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Randevu_Doktor">
+    <End Type="AileHekimligidbModel.Doktor" Role="Doktor" Multiplicity="1" />
+    <End Type="AileHekimligidbModel.Randevu" Role="Randevu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doktor">
+        <PropertyRef Name="DoktorId" />
+      </Principal>
+      <Dependent Role="Randevu">
+        <PropertyRef Name="DoktorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muayene_Ilac">
+    <End Type="AileHekimligidbModel.Ilac" Role="Ilac" Multiplicity="1" />
+    <End Type="AileHekimligidbModel.Muayene" Role="Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ilac">
+        <PropertyRef Name="IlacId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="IlacId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muayene_Tani">
+    <End Type="AileHekimligidbModel.Tani" Role="Tani" Multiplicity="1" />
+    <End Type="AileHekimligidbModel.Muayene" Role="Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tani">
+        <PropertyRef Name="TaniId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="TaniId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KullaniciAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="KullaniciSifre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tip" Type="Byte" Nullable="false" />
+    <Property Name="GirisID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hasta">
+    <Key>
+      <PropertyRef Name="HastaId" />
+    </Key>
+    <Property Name="HastaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Soyadi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TcKimlik" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AnneAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BabaAd" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DogumTarihi" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cinsiyet" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Resim" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Muayenes" Relationship="AileHekimligidbModel.FK_Muayene_Hasta" FromRole="Hasta" ToRole="Muayene" />
+    <NavigationProperty Name="Randevus" Relationship="AileHekimligidbModel.FK_Randevu_Hasta" FromRole="Hasta" ToRole="Randevu" />
+  </EntityType>
+  <Association Name="FK_Muayene_Hasta">
+    <End Type="AileHekimligidbModel.Hasta" Role="Hasta" Multiplicity="1" />
+    <End Type="AileHekimligidbModel.Muayene" Role="Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="HastaId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="HastaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Randevu_Hasta">
+    <End Type="AileHekimligidbModel.Hasta" Role="Hasta" Multiplicity="1" />
+    <End Type="AileHekimligidbModel.Randevu" Role="Randevu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="HastaId" />
+      </Principal>
+      <Dependent Role="Randevu">
+        <PropertyRef Name="HastaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa6902b4920e4b50895bf0c2c6cefc9d" Name="Diagram1">
+        <EntityTypeShape EntityType="AileHekimligidbModel.Doktor" Width="1.5" PointX="3.75" PointY="7.125" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.Ilac" Width="1.5" PointX="3.75" PointY="10.25" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.Muayene" Width="1.5" PointX="6" PointY="2.625" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.Randevu" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.SaglikOcagi" Width="1.5" PointX="1.5" PointY="7.5" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.sysdiagram" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.Tani" Width="1.5" PointX="3.75" PointY="13" />
+        <AssociationConnector Association="AileHekimligidbModel.FK_Doktor_SaglikOcagi" />
+        <AssociationConnector Association="AileHekimligidbModel.FK_Muayene_Doktor" />
+        <AssociationConnector Association="AileHekimligidbModel.FK_Randevu_Doktor" />
+        <AssociationConnector Association="AileHekimligidbModel.FK_Muayene_Ilac" />
+        <AssociationConnector Association="AileHekimligidbModel.FK_Muayene_Tani" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.Login" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="AileHekimligidbModel.Hasta" Width="1.5" PointX="0.75" PointY="2.375" />
+        <AssociationConnector Association="AileHekimligidbModel.FK_Muayene_Hasta" />
+        <AssociationConnector Association="AileHekimligidbModel.FK_Randevu_Hasta" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AileHekimligidbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Doktor">
+    <Key>
+      <PropertyRef Name="DoktorId" />
+    </Key>
+    <Property Name="DoktorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SaglikOcagiId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Hasta">
+    <Key>
+      <PropertyRef Name="HastaId" />
+    </Key>
+    <Property Name="HastaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyadi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TcKimlik" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AnneAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BabaAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DogumTarihi" Type="datetime" Nullable="false" />
+    <Property Name="Cinsiyet" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Resim" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Ilac">
+    <Key>
+      <PropertyRef Name="IlacId" />
+    </Key>
+    <Property Name="IlacId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IlacAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Dozaj" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KullanimSuresi" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="KullaniciID" />
+    </Key>
+    <Property Name="KullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KullaniciAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KullaniciSifre" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tip" Type="tinyint" Nullable="false" />
+    <Property Name="GirisID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Muayene">
+    <Key>
+      <PropertyRef Name="MuayeneId" />
+    </Key>
+    <Property Name="MuayeneId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoktorId" Type="int" Nullable="false" />
+    <Property Name="HastaId" Type="int" Nullable="false" />
+    <Property Name="TaniId" Type="int" Nullable="false" />
+    <Property Name="IlacId" Type="int" Nullable="false" />
+    <Property Name="Sikayet" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Randevu">
+    <Key>
+      <PropertyRef Name="RandevuId" />
+    </Key>
+    <Property Name="RandevuId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HastaId" Type="int" Nullable="false" />
+    <Property Name="DoktorId" Type="int" Nullable="false" />
+    <Property Name="RandevuTarihi" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SaglikOcagi">
+    <Key>
+      <PropertyRef Name="SaglikOcagiId" />
+    </Key>
+    <Property Name="SaglikOcagiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SaglikOcagiAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SaglikOcagiAdres" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tani">
+    <Key>
+      <PropertyRef Name="TaniId" />
+    </Key>
+    <Property Name="TaniId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Aciklama" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <Association Name="FK_Doktor_SaglikOcagi">
+    <End Role="SaglikOcagi" Type="Self.SaglikOcagi" Multiplicity="1" />
+    <End Role="Doktor" Type="Self.Doktor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SaglikOcagi">
+        <PropertyRef Name="SaglikOcagiId" />
+      </Principal>
+      <Dependent Role="Doktor">
+        <PropertyRef Name="SaglikOcagiId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muayene_Doktor">
+    <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+    <End Role="Muayene" Type="Self.Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doktor">
+        <PropertyRef Name="DoktorId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="DoktorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muayene_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="1" />
+    <End Role="Muayene" Type="Self.Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="HastaId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="HastaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muayene_Ilac">
+    <End Role="Ilac" Type="Self.Ilac" Multiplicity="1" />
+    <End Role="Muayene" Type="Self.Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ilac">
+        <PropertyRef Name="IlacId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="IlacId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Muayene_Tani">
+    <End Role="Tani" Type="Self.Tani" Multiplicity="1" />
+    <End Role="Muayene" Type="Self.Muayene" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tani">
+        <PropertyRef Name="TaniId" />
+      </Principal>
+      <Dependent Role="Muayene">
+        <PropertyRef Name="TaniId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Randevu_Doktor">
+    <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+    <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Doktor">
+        <PropertyRef Name="DoktorId" />
+      </Principal>
+      <Dependent Role="Randevu">
+        <PropertyRef Name="DoktorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Randevu_Hasta">
+    <End Role="Hasta" Type="Self.Hasta" Multiplicity="1" />
+    <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hasta">
+        <PropertyRef Name="HastaId" />
+      </Principal>
+      <Dependent Role="Randevu">
+        <PropertyRef Name="HastaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AileHekimligidbModelStoreContainer">
+    <EntitySet Name="Doktor" EntityType="Self.Doktor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hasta" EntityType="Self.Hasta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ilac" EntityType="Self.Ilac" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Muayene" EntityType="Self.Muayene" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaglikOcagi" EntityType="Self.SaglikOcagi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tani" EntityType="Self.Tani" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Doktor_SaglikOcagi" Association="Self.FK_Doktor_SaglikOcagi">
+      <End Role="SaglikOcagi" EntitySet="SaglikOcagi" />
+      <End Role="Doktor" EntitySet="Doktor" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muayene_Doktor" Association="Self.FK_Muayene_Doktor">
+      <End Role="Doktor" EntitySet="Doktor" />
+      <End Role="Muayene" EntitySet="Muayene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muayene_Hasta" Association="Self.FK_Muayene_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="Muayene" EntitySet="Muayene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muayene_Ilac" Association="Self.FK_Muayene_Ilac">
+      <End Role="Ilac" EntitySet="Ilac" />
+      <End Role="Muayene" EntitySet="Muayene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Muayene_Tani" Association="Self.FK_Muayene_Tani">
+      <End Role="Tani" EntitySet="Tani" />
+      <End Role="Muayene" EntitySet="Muayene" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Randevu_Doktor" Association="Self.FK_Randevu_Doktor">
+      <End Role="Doktor" EntitySet="Doktor" />
+      <End Role="Randevu" EntitySet="Randevu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Randevu_Hasta" Association="Self.FK_Randevu_Hasta">
+      <End Role="Hasta" EntitySet="Hasta" />
+      <End Role="Randevu" EntitySet="Randevu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

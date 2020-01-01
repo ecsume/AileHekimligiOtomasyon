@@ -1,0 +1,12 @@
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\bin\Debug\AileHekimligiOtomasyonu.DAL.dll.config
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\bin\Debug\AileHekimligiOtomasyonu.DAL.dll
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\bin\Debug\AileHekimligiOtomasyonu.DAL.pdb
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\bin\Debug\EntityFramework.dll
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\bin\Debug\EntityFramework.xml
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\obj\Debug\AileHekimligiOtomasyonu.DAL.csprojAssemblyReference.cache
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\obj\Debug\AileHekimligiOtomasyonu.DAL.csproj.CoreCompileInputs.cache
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\obj\Debug\AileHekimligiOtomasyonu.DAL.csproj.CopyComplete
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\obj\Debug\AileHekimligiOtomasyonu.DAL.dll
+C:\Users\bCemSume\source\repos\AileHekimligiOtomasyonu\AileHekimligiOtomasyonu.DAL\obj\Debug\AileHekimligiOtomasyonu.DAL.pdb
